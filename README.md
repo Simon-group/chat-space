@@ -1,6 +1,6 @@
 # README
 
-membersテーブル
+・membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -11,7 +11,7 @@ membersテーブル
 - belongs_to :group
 - belongs_to :user
 
-usersテーブル
+・usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -22,7 +22,7 @@ usersテーブル
 - has_many :members
 - has_many :messages
 
-groupsテーブル
+・groupsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -33,7 +33,7 @@ groupsテーブル
 - has_many :members
 - has_many :messages
 
-messagesテーブル
+・messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
