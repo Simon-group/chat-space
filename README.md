@@ -34,6 +34,7 @@ groupsテーブル
 - has_many :messages
 
 messagesテーブル
+
 |Column|Type|Options|
 |------|----|-------|
 |body||text||
