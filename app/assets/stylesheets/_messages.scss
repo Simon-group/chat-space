@@ -4,6 +4,9 @@
   font-weight: lighter;
   text-align: center;
   width: 100vw;
+  .notice {
+    background-color: $light_blue
+  }
 }
   .side-bar { 
     color: $white;
@@ -38,17 +41,19 @@
       overflow: scroll;
       .group {
         margin-bottom: 40px;
-        &__name {
-          font-size: 15px;
-          text-align :left;
-        }
-        &__message {
-          font-size: 11px;
-          margin-top: 5px;
-          text-align: left;
-        }
-      }
-    }
+            &__name {
+              font-size: 15px;
+              text-align :left;
+              color: $white;
+            }
+            &__message {
+              font-size: 11px;
+              margin-top: 5px;
+              text-align: left;
+              color: $white;
+              }
+            }
+          }
 
   .chat {
     width: calc(100% - 300px);
