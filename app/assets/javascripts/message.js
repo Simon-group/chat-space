@@ -35,17 +35,17 @@ $(function(){
       processData: false,
       contentType: false
     })
-    .done(function(data){
-        var html = buildHTML(data);
-        $('.messages').append(html);
-        $('.form__submit').prop( 'disabled', false );
-        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-        $('.form__message').val('');
-        $('.hidden').val('');
-    })
-      .fail(function(){
-        alert('エラーです。');
-        $('.form__submit').prop( 'disabled', false );
+  .done(function(data){
+    var html = buildHTML(data);
+    $('.messages').append(html);
+    $('.form__submit').prop( 'disabled', false );
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+    $('.form__message').reset();
+    $('.hidden').val('');
+      })
+    .fail(function(){
+      alert('エラーです。');
+      $('.form__submit').prop( 'disabled', false );
     })
   })
 });
