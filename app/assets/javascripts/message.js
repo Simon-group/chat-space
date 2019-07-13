@@ -41,7 +41,7 @@ $(function(){
     $('.form__submit').prop( 'disabled', false );
     $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
     $('.form__message').reset();
-    $('.hidden').val('');
+    $('.hidden');
       })
     .fail(function(){
       alert('エラーです。');
