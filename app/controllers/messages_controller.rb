@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @messages = @group.messages.includes(:user)
+    
   end
 
   def create
@@ -15,6 +16,7 @@ class MessagesController < ApplicationController
       end
     else
       @messages = @group.messages.includes(:user)
+      flash.now[:alert] = 'メッセージを入力してください。'
       render :index
     end
   end

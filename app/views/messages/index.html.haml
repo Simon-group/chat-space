@@ -1,26 +1,8 @@
-.flash-box
+.notification
+  .notice
 
-  .side-bar
-    .header
-      %h3.header__name
-        = current_user.name
-      %ul.header__lists
-        %li.list
-          = link_to new_group_path do
-            = fa_icon 'pencil-square-o', class: 'icon'
-        %li.list
-          = link_to edit_user_path(current_user) do
-            = fa_icon 'cog', class: 'icon'
-
-    .groups
-      .group
-        - current_user.groups.each do |group|
-          = link_to group_messages_path(group) do
-            .group__name
-              = group.name
-            .group__message
-              = group.show_last_message
-
+.wrapper
+  =render partial: "shared/side_bar"
   .chat
     .header
       .left-header
@@ -33,14 +15,13 @@
               = group_user.user.name
       .right-header
         %a.right-header__button
-          = link_to edit_group_path(@group.id) do
-            %a.right-header__icon
-              Edit
+          = link_to edit_group_path(@group.id), class: "btn" do
+            Edit
     .messages
       = render @messages
     .form
       = form_for [@group, @message] do |f|
-        = f.text_field :content, class: 'form__message', placeholder: ' type a message'
+        = f.text_field :content, class: 'form__message', id: 'new_message', placeholder: 'type a message'
         .form__mask
           = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'

@@ -41,6 +41,9 @@
       overflow: scroll;
       .group {
         margin-bottom: 40px;
+        .border {
+          text-decoration: none;
+        }
         &__name {
           font-size: 15px;
           text-align :left;
@@ -92,6 +95,14 @@
         line-height: 40px;
         margin-top: 28px;
         padding: 0 20px;
+        &__button{
+          color: $light_blue;
+          text-decoration:none;
+        }
+          .btn{ 
+            color: $light_blue;
+            text-decoration: none;
+          }
         }
       }
     }
