@@ -1,50 +1,58 @@
-$(function() {
+$(document).on('turbolinks:load', function(){
+  $(function() {
+  
+    var search_list = $(".search-users");
+  
+    function appendUser(user){
+      var html = `<div class="chat-group-user clearfix">
+                  <p class="chat-group-user__name">${user.name}</p>
+                  <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</a>
+                  </div>`
+        search_list.append(html);
+    }
 
-    function appendUser(user) {
-      var html = `
-                    <div class="chat-group-user clearfix">
-                      <p class="chat-group-user__name">${user.name}</p>
-                        <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</a>
-                    </div>
-                 `
-     return html;
-    };
+    var member_list = $(".member-group-users");
 
-$("#user-search-field").on("keyup", function() {
-    var input = $("#user-search-field").val();
-    var href = window.location.href
-
-    $.ajax({
-      type: 'GET',
-      url: '/users',
-      data: { keyword: input },
-      dataType: 'json'
-    })
-
-    .done(function(users) {
-      $(".user-search-result").empty();
-      if (users.length !== 0) {
-        users.forEach(function(user){
-          var html = appendUser(user);
-          $(".user-search-result").append(html);
-        });
+    function addUser(name,user_id) {
+    var html = `<div id='chat-group-users'>
+                <div class='chat-group-user clearfix js-chat-member' id='${user_id}'>
+                  <input name='group[user_ids][]' type='hidden' value='${user_id}'>
+                    <p class='chat-group-user__name'>${name}</p>
+                    <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+              </div>`
+    member_list.append(html);
       }
-    })
-
-    .fail(function(){
-      alert('通信に失敗しました');
+  
+    $("#user-search-field").on("keyup", function() {
+      var input = $("#user-search-field").val();
+      $.ajax({
+        type: 'GET',
+        url: '/users',
+        data: { keyword: input },
+        dataType: 'json'
+      })
+      .done(function(users){
+        $(".search-users").empty();
+        if (users.length !== 0) {
+          users.forEach(function(user){
+            appendUser(user);
+          });
+        }
+      })
+      .fail(function(){
+        alert('検索に失敗しました');
+      })
     });
-
+      $(document).on("click", ".user-search-add", function () {
+        var name = $(this).attr('data-user-name');
+        var user_id = $(this).attr('data-user-id');
+        $(this).parent().remove();
+        addUser(name, user_id);
+      });
+  
+      $(document).on("click", ".user-search-remove", function () {
+        $(this).parent().remove();
+      });
+    });
   });
-
-  function clickHTML(user){
-    var userId = user.attr("data-user-id");
-//Jqueryのattrメソッドの結果をuerIdに代入
-    var html = `<div class='chat-group-user clearfix js-chat-member' id='${userId}'>
-                  <input name='group[user_ids][]' type='hidden' value="${userId}">
-                  <p class='chat-group-user__name'>${user.attr("data-user-name")}</p>
-                  <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
-               </div>`
-    return html;
-  };
-});
+  

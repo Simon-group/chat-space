@@ -41,6 +41,9 @@
       overflow: scroll;
       .group {
         margin-bottom: 40px;
+        .border {
+          text-decoration: none;
+        }
         &__name {
           font-size: 15px;
           text-align :left;
@@ -96,9 +99,13 @@
           color: $light_blue;
           text-decoration:none;
         }
+          .btn{ 
+            color: $light_blue;
+            text-decoration: none;
+          }
+        }
       }
     }
-  }
 
     .messages {
       background-color: #FAFAFA;
