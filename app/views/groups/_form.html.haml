@@ -17,17 +17,20 @@
     .chat-group-form__field--right
       %input#user-search-field.chat-group-form__input{ placeholder: '追加したいユーザー名を入力してください'}
       .chat-group-form__search.clearfix
-      %p.search-users
+      .search-users
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
       %label.chat-group-form__label チャットメンバー
     .chat-group-form__field--right
       .chat-group-users
-      .chat_group_user_22.chat_group_user.clearfix
-        = f.hidden_field :user_ids, value: current_user.id, multiple: true
+        - @group.users.each do |user|
+          #chat-group-user-22.chat-group-user.clearfix
+            %input{:name => "group[user_ids][]", :type => "hidden", :value => "#{ user.id }"}/
+            %p.chat-group-user__name
+              = user.name
+            %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
 
-    .member-group-users
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
