@@ -41,8 +41,8 @@ $(document).on('turbolinks:load', function(){
     $('.messages').append(html);
     $('.form__submit').prop( 'disabled', false );
     $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-    $('.form__message').reset();
-    $('.hidden');
+    $(".form__message").val('');
+    $('.hidden').val('');
       })
     .fail(function(){
       alert('エラーです。');
